@@ -225,3 +225,15 @@ func TestExprRegexp(t *testing.T) {
 	t.Log(types.ToString(ret))
 }
 
+func TestExprABS(t *testing.T) {
+	code := `abs($1)`
+	p, err := Compile(code, []types.BaseType{types.Int})
+	if err != nil {
+		panic(err)
+	}
+	ret, err := p.Run([]types.INullableVector{types.BuildValue(types.Int, -199)})
+	if err != nil {
+		panic(err)
+	}
+	t.Log(types.ToString(ret))
+}
